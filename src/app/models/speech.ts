@@ -1,7 +1,7 @@
 export interface Speech {
+    id: string;
     title: string;
     author: string;
-    content: string;
+    transcript: string;
     date: Date;
 }
-
