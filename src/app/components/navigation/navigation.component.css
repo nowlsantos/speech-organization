@@ -12,5 +12,10 @@
 }
 
 .bg-dark {
-    background-color: #103b4d!important;
+    /* background-color: #103b4d!important; */
+    background-color: #0154a2!important;
+}
+
+.btn-outline-primary {
+    color: white;
 }

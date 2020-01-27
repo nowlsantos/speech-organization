@@ -1,0 +1,8 @@
+main {
+    position: relative;
+    background: white;
+    margin: 0 auto;
+    padding: 20px;
+    resize: both;
+    overflow: auto;
+}  
