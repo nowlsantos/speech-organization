@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">{{ pageTitle }} <i class="fab fa-font-awesome"></i></div>
+        <div class="card-body">
+            <h2 class="card-title">{{ speech?.title }}</h2>
+            <h5 class="card-title">{{ speech?.author }}</h5>
+            <p class="card-title">{{ speech?.date.seconds * 1000 | date: 'longDate' }}</p>
+            <p></p>
+            <p class="card-text">{{ speech?.transcript }}</p>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                  <button class="btn btn-outline-secondary mr-3"
+                          [routerLink]="['/speeches']"
+                          queryParamsHandling="preserve">Back
+                  </button>
+                  <button class="btn btn-outline-primary"
+                          [routerLink]="['edit']">Edit
+                  </button>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>

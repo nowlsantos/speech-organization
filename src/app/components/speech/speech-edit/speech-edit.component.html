@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">{{ pageTitle }}</div>
+    <div class="card-body">
+        <form [formGroup]="speechForm" novalidate (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="titleInputId">Title</label>
+                <input  type="text" 
+                        class="form-control" 
+                        id="titleInputId"
+                        formControlName="title"
+                        placeholder="{{ speech?.title }}">
+            </div>
+            <div class="form-group">
+                <label for="authorId">Author</label>
+                <input  type="text" 
+                        class="form-control" 
+                        id="formGroupAuthor"
+                        formControlName="author"
+                        placeholder="{{ speech?.author }}">
+            </div>
+            <div class="form-group">
+                <label for="dateId">Date</label>
+                <input  type="text" 
+                        class="form-control" 
+                        id="dateId" 
+                        formControlName="date"
+                        placeholder="{{ speech?.date.seconds * 1000 | date: 'longDate' }}">
+            </div>
+            <div class="form-group">
+                <label for="transcriptId">Transcript</label>
+                <textarea  class="form-control" 
+                            id="transcriptId"
+                            rows="10">{{ speech?.transcript }}
+                </textarea>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <button class="btn btn-outline-danger mr-3" (click)="deleteSpeech()">Delete</button>
+                    <button class="btn btn-outline-info mr-3" (click)="shareSpeech()">Share</button>
+                    <button class="btn btn-outline-primary" type="submit">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
