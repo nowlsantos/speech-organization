@@ -26,13 +26,9 @@
             "styles": [
               "src/styles.css"
             ],
-<<<<<<< HEAD
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js"
             ]
-=======
-            "scripts": []
->>>>>>> 2f898f9596116ac8472b27b26a99dbf99bbfe3b1
           },
           "configurations": {
             "production": {
