@@ -8,7 +8,7 @@ import { SpeechModule } from './components/speech/speech.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';;
+import { environment } from 'src/environments/environment';
 import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
@@ -24,7 +24,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
         SpeechModule,
         AppRoutingModule
     ],
-    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,6 +17,9 @@ export class SpeechListComponent implements OnInit {
                 private router: Router ) {}
 
     ngOnInit() {
+        this.speechService.searchItem$.subscribe(term => {
+            console.log('SpeechService:', term);
+        });
         this.speech$ = this.speechService.getSpeeches();
     }
 

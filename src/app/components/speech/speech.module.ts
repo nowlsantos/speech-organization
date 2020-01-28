@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SpeechListComponent } from './speech-list/speech-list.component';
 import { SpeechDetailComponent } from './speech-detail/speech-detail.component';
@@ -24,8 +24,10 @@ const routes: Routes = [
      ],
     imports: [
         CommonModule,
+        FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes)
-    ]
+    ],
+    exports: [ FormsModule, ReactiveFormsModule ]
 })
 export class SpeechModule { }
