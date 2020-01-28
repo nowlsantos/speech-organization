@@ -4,7 +4,7 @@
         <div class="card-body">
             <h2 class="card-title">{{ speech?.title }}</h2>
             <h5 class="card-title">{{ speech?.author }}</h5>
-            <p class="card-title">{{ speech?.date.seconds.toString() * 1000 | date: 'longDate' }}</p>
+            <p class="card-title">{{ speech?.date.seconds * 1000 | date: 'longDate' }}</p>
             <p></p>
             <p class="card-text">{{ speech?.transcript }}</p>
             <div class="row mt-4">
