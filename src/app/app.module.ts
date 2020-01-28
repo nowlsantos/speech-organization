@@ -14,7 +14,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 @NgModule({
     declarations: [
         AppComponent,
-        NavigationComponent,
+        NavigationComponent
     ],
     imports: [
         BrowserModule,
