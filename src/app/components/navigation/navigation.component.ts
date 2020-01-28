@@ -20,20 +20,4 @@ export class NavigationComponent implements OnInit {
         this.speechService.getSearchItem(this.searchControl.value);
         this.searchControl.reset();
     }
-
-    /* onSearch() {
-        // console.log(this.searchControl.value);
-        const search = this.searchControl.value;
-        this.speeches.pipe(
-            switchMap( search =>
-                this.afs.collection<Speech>('speeches', ref => {
-                    let query: firebase.firestore.Query = ref;
-                    if ( search ) {
-                        query = query.where('author', '==', query);
-                    }
-                    return query;
-                }).valueChanges()
-            )
-        ).subscribe(items => console.log(items));
-    } */
 }
