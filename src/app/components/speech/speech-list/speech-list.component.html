@@ -1,4 +1,21 @@
 <div class="table-responsive">
+	<form class="form-inline my-2 my-lg-0 justify-content-end">
+		<input  class="form-control mr-sm-2" 
+				type="text"
+				[formControl]="searchControl"
+				placeholder="Search By...">
+		<select class="form-control mr-sm-2" id="formControlSelect" [formControl]="selectControl">
+			<option>Author</option>
+			<option>Title</option>
+			<option>Month</option>
+			<option>Year</option>
+		</select>
+		<button class="btn btn-outline-primary my-2 my-sm-0" 
+				type="submit"
+				(click)="onSearch()">Search
+		</button>
+	</form>
+
 	<table class="table table-striped">
 		<thead class="thead-dark">
 			<tr>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Speech } from '../models/speech';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -10,31 +10,19 @@ export class SpeechService {
     private speechCollection: AngularFirestoreCollection<Speech>;
     private speechDoc: AngularFirestoreDocument<Speech>;
     private speech: Observable<Speech>;
-    private searchSource$: BehaviorSubject<string>;
-    searchItem$: Observable<string>;
 
     constructor(private db: AngularFirestore) {
         this.speechCollection = this.db.collection<Speech>('speeches');
-        this.searchSource$ = new BehaviorSubject<string | null>('');
-        this.searchItem$ = this.searchSource$.asObservable();
     }
 
-    getSpeeches(term: string = '') {
+    getSpeeches() {
         return this.speechCollection.valueChanges({ idField: 'id' });
-    }
-
-    getSearchItem(term: string | null) {
-        this.searchSource$.next(term);
     }
 
     getSpeech(id: string) {
         this.speechDoc = this.db.doc(`speeches/${id}`);
         this.speech = this.speechDoc.valueChanges();
         return this.speech;
-    }
-
-    search(term: string) {
-        // const query = this.speechCollection.ref.where()
     }
 
     addSpeech(speech: Speech) {
@@ -49,5 +37,39 @@ export class SpeechService {
     updateSpeech(speech: Speech) {
         this.speechDoc = this.db.doc(`speeches/${speech.id}`);
         this.speechDoc.update(speech);
+    }
+
+    searchByAll(searchTerm: string) {
+        if ( searchTerm === '' || searchTerm === 'all' || searchTerm === null ) {
+            return this.getSpeeches();
+        }
+    }
+
+    searchByAuthor(searchTerm: string) {
+        this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
+                                    .where('name', '>=', searchTerm)
+                                    .where('name', '<=', searchTerm + '\uf8ff'));
+        return this.getSpeeches();
+    }
+
+    searchByTitle(searchTerm: string) {
+        this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
+                                    .where('title_lowcase', '>=', searchTerm)
+                                    .where('title_lowcase', '<=', searchTerm + '\uf8ff'));
+        return this.getSpeeches();
+    }
+
+    searchByMonth(searchTerm: string) {
+        this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
+                                    .where('month', '>=', searchTerm)
+                                    .where('month', '<=', searchTerm + '\uf8ff'));
+        return this.getSpeeches();
+    }
+
+    searchByYear(searchTerm: string) {
+        this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
+                                    .where('year', '>=', searchTerm)
+                                    .where('year', '<=', searchTerm + '\uf8ff'))
+        return this.getSpeeches();
     }
 }

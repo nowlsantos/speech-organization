@@ -4,4 +4,8 @@ export interface Speech {
     author: string;
     transcript: string;
     date: Date;
+    name?: string;
+    month?: string;
+    year?: string;
+    title_lowcase?: string;
 }

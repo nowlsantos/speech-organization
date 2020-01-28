@@ -29,7 +29,11 @@ export class SpeechNewComponent implements OnInit {
             title: value.title,
             author: value.author,
             date: new Date(value.date),
-            transcript: value.transcript
+            transcript: value.transcript,
+            month: value.date.getMonth().toString(),
+            year: value.date.getFullYear().toString(),
+            name: value.author.toLocaleLowerCase(),
+            title_lowcase: value.title.toLocaleLowerCase(),
         };
 
         this.speechService.addSpeech(speech);
