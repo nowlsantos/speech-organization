@@ -24,7 +24,7 @@
                         class="form-control" 
                         id="dateId" 
                         formControlName="date"
-                        placeholder="{{ speech?.date.seconds * 1000 | date: 'longDate' }}">
+                        placeholder="{{ speech?.date.seconds.toString() * 1000 | date: 'longDate' }}">
             </div>
             <div class="form-group">
                 <label for="transcriptId">Transcript</label>

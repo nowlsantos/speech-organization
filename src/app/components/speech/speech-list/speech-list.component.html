@@ -14,7 +14,7 @@
 				<th scope="row">{{ n + 1 }}</th>
 				<td>{{ speech.author }}</td>
 				<td><a class="titleLink" [routerLink]="[ speech.id ]">{{ speech.title }}</a></td>
-				<td>{{ speech.date.seconds * 1000 | date: 'longDate' }}</td>
+				<td>{{ speech.date.seconds.toString() | date: 'longDate' }}</td>
 				<td>
 					<button class="btn btn-outline-primary btn-sm"
 							[routerLink]="['/speeches', speech.id, 'edit']">Edit

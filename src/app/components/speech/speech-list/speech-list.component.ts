@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class SpeechListComponent implements OnInit {
 
     speech$: Observable<Speech[]>;
+    date: number;
 
     constructor(private speechService: SpeechService,
                 private router: Router ) {}
