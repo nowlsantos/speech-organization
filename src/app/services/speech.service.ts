@@ -39,16 +39,16 @@ export class SpeechService {
         this.speechDoc.update(speech);
     }
 
-    searchByAll(searchTerm: string) {
-        if ( searchTerm === '' || searchTerm === 'all' || searchTerm === null ) {
-            return this.getSpeeches();
-        }
+    viewSpeeches() {
+        this.speechCollection = this.db.collection<Speech>('speeches');
+        return this.speechCollection.valueChanges({ idField: 'id' });
     }
 
     searchByAuthor(searchTerm: string) {
         this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
                                     .where('name', '>=', searchTerm)
                                     .where('name', '<=', searchTerm + '\uf8ff'));
+
         return this.getSpeeches();
     }
 
