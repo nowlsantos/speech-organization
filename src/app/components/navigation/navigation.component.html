@@ -16,10 +16,17 @@
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 			<li class="nav-item">
-				<a class="nav-link" [routerLink]="['/speeches']">All Speeches</a>
+				<a class="nav-link"
+					[routerLink]="['/speeches']"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]=" { exact: true}">All Speeches
+				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" [routerLink]="['/speeches', 0, 'new']">Add Speech</a>
+				<a class="nav-link" 
+					[routerLink]="['/speeches', 0, 'new']"
+					routerLinkActive="active">Add Speech
+				</a>
 			</li>
 		</ul>
 	</div>

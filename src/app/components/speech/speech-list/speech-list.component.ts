@@ -17,6 +17,7 @@ export class SpeechListComponent implements OnInit {
     speech$: Observable<Speech[]>;
     date: number;
     isNullTerm = false;
+    isShowAll = false;
 
     constructor(private afs: AngularFirestore,
                 private speechService: SpeechService,
@@ -31,7 +32,6 @@ export class SpeechListComponent implements OnInit {
     }
 
     onSearch() {
-        this.isNullTerm = false;
         const searchTerm = (`${this.searchControl.value}`).toLocaleLowerCase();
         const selectOption = `${this.selectControl.value}`;
 
@@ -56,15 +56,15 @@ export class SpeechListComponent implements OnInit {
         }
 
         this.speech$.subscribe(speech => {
-            if ( !speech.length  ) {
-                this.isNullTerm = true;
-            }
+            this.isNullTerm = !speech.length ? true : false;
         });
+
+        this.isShowAll = true;
         this.searchControl.reset();
     }
 
     onViewAll() {
-        this.isNullTerm = false;
+        this.isShowAll = false;
         this.speech$ = this.speechService.viewSpeeches();
     }
 }

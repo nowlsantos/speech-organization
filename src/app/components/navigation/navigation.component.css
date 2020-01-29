@@ -4,7 +4,6 @@
 
 .nav-link {
     font-size: large;
-    cursor: pointer;
 }
 
 .navbar { 
@@ -12,7 +11,6 @@
 }
 
 .bg-dark {
-    /* background-color: #103b4d!important; */
     background-color: #0154a2!important;
 }
 

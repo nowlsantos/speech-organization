@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-6">
-			<button class="btn btn-outline-primary my-2 my-sm-0" 
-				(click)="onViewAll()">View All
+			<button [disabled]="!isShowAll" 
+					class="btn btn-outline-primary my-2 my-sm-0" 
+					(click)="onViewAll()">View All
 			</button>
 		</div>
 		<div class="col-6">
@@ -20,6 +21,7 @@
 				</select>
 				<button class="btn btn-outline-primary my-2 my-sm-0" 
 						type="submit"
+						[disabled]="searchControl.value == null || !searchControl.value.length"
 						(click)="onSearch()">Search
 				</button>
 			</form>
