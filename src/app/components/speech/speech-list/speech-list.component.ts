@@ -64,6 +64,7 @@ export class SpeechListComponent implements OnInit {
     }
 
     onViewAll() {
+        this.isNullTerm = false;
         this.isShowAll = false;
         this.speech$ = this.speechService.viewSpeeches();
     }
