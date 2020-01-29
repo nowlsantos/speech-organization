@@ -69,7 +69,7 @@ export class SpeechService {
     searchByYear(searchTerm: string) {
         this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
                                     .where('year', '>=', searchTerm)
-                                    .where('year', '<=', searchTerm + '\uf8ff'))
+                                    .where('year', '<=', searchTerm + '\uf8ff'));
         return this.getSpeeches();
     }
 }
