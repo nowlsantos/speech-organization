@@ -44,6 +44,24 @@ export class SpeechService {
         return this.speechCollection.valueChanges({ idField: 'id' });
     }
 
+    search(query: string[]) {
+        const term = query[0];
+        let result = query[1];
+
+        switch ( result ) {
+            case 'Author': result = 'name'; break;
+            case 'Title': result = 'title_lowcase'; break;
+            case 'Month': result = 'month'; break;
+            case 'Year': result = 'year'; break;
+        }
+
+        this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
+            .where(result, '>=', term)
+            .where(result, '<=', term + '\uf8ff'));
+
+        return this.getSpeeches();
+    }
+
     searchByAuthor(searchTerm: string) {
         this.speechCollection = this.db.collection<Speech>('speeches', ref => ref
                                     .where('name', '>=', searchTerm)

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SpeechService } from 'src/app/services/speech.service';
 import { Speech } from 'src/app/models/speech';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-speech-detail',
@@ -17,11 +18,8 @@ export class SpeechDetailComponent implements OnInit {
                 private speechService: SpeechService) { }
 
     ngOnInit() {
-        this.route.paramMap.subscribe(params => {
-            const id = params.get('id');
-            this.speechService.getSpeech(id).subscribe( data => {
-                this.speech = data;
-            });
-        });
+        this.route.paramMap.pipe(
+            switchMap(params => this.speechService.getSpeech(params.get('id')))
+        ).subscribe(data => this.speech = data);
     }
 }

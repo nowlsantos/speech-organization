@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SpeechService } from 'src/app/services/speech.service';
 import { Speech } from 'src/app/models/speech';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-speech-list',
@@ -35,25 +36,10 @@ export class SpeechListComponent implements OnInit {
         const searchTerm = (`${this.searchControl.value}`).toLocaleLowerCase();
         const selectOption = `${this.selectControl.value}`;
 
-        switch ( selectOption ) {
-            case 'Author':
-                this.speech$ = this.speechService.searchByAuthor(searchTerm);
-                break;
-
-            case 'Title':
-                this.speech$ = this.speechService.searchByTitle(searchTerm);
-                break;
-
-            case 'Month':
-                this.speech$ = this.speechService.searchByMonth(searchTerm);
-                break;
-
-            case 'Year':
-                this.speech$ = this.speechService.searchByYear(searchTerm);
-                break;
-
-            default: break;
-        }
+        const query$ = of([searchTerm, selectOption]);
+        this.speech$ = query$.pipe(
+            switchMap( value => this.speechService.search(value))
+        );
 
         this.speech$.subscribe(speech => {
             this.isNullTerm = !speech.length ? true : false;
