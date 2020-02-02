@@ -4,7 +4,6 @@ import { SpeechService } from 'src/app/services/speech.service';
 import { Speech } from 'src/app/models/speech';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -19,13 +18,14 @@ export class SpeechListComponent implements OnInit {
     date: number;
     isNullTerm = false;
     isShowAll = false;
+    showSpinner = true;
 
-    constructor(private afs: AngularFirestore,
-                private speechService: SpeechService,
+    constructor(private speechService: SpeechService,
                 private router: Router ) {}
 
     ngOnInit() {
         this.speech$ = this.speechService.getSpeeches();
+        this.speech$.subscribe( () => this.showSpinner = false );
     }
 
     navigateSpeechDetail(speech: Speech) {

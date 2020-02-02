@@ -59,7 +59,7 @@ export class SpeechService {
             .where(result, '>=', term)
             .where(result, '<=', term + '\uf8ff'));
 
-        return this.getSpeeches();
+        return this.speechCollection.valueChanges({ idField: 'id' });
     }
 
     searchByAuthor(searchTerm: string) {

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(routes) ],
+    imports: [ CommonModule, RouterModule.forRoot(routes) ],
     exports: [ RouterModule ],
     declarations: [
         HomeComponent,

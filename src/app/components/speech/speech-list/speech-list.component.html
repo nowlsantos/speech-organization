@@ -1,33 +1,34 @@
-<div class="container">
-	<div class="row">
-		<div class="col-6">
-			<button [disabled]="!isShowAll" 
-					class="btn btn-outline-primary my-2 my-sm-0" 
-					(click)="onViewAll()">View All
+<div *ngIf="showSpinner" class="loader"></div>
+
+<div class="row">
+	<div class="col-6">
+		<button [disabled]="!isShowAll" 
+				class="btn btn-outline-primary my-2 my-sm-0" 
+				(click)="onViewAll()">View All
+		</button>
+	</div>
+	<div class="col-6">
+		<form class="form-inline my-2 my-lg-0 justify-content-end">
+			<input  class="form-control mr-sm-2" 
+					type="text"
+					[formControl]="searchControl"
+					placeholder="Search By...">
+			
+			<select class="form-control mr-sm-2" id="formControlSelect" [formControl]="selectControl">
+				<option>Author</option>
+				<option>Title</option>
+				<option>Month</option>
+				<option>Year</option>
+			</select>
+			<button class="btn btn-outline-primary my-2 my-sm-0" 
+					type="submit"
+					[disabled]="searchControl.value == null || !searchControl.value.length"
+					(click)="onSearch()">Search
 			</button>
-		</div>
-		<div class="col-6">
-			<form class="form-inline my-2 my-lg-0 justify-content-end">
-				<input  class="form-control mr-sm-2" 
-						type="text"
-						[formControl]="searchControl"
-						placeholder="Search By...">
-				
-				<select class="form-control mr-sm-2" id="formControlSelect" [formControl]="selectControl">
-					<option>Author</option>
-					<option>Title</option>
-					<option>Month</option>
-					<option>Year</option>
-				</select>
-				<button class="btn btn-outline-primary my-2 my-sm-0" 
-						type="submit"
-						[disabled]="searchControl.value == null || !searchControl.value.length"
-						(click)="onSearch()">Search
-				</button>
-			</form>
-		</div>
+		</form>
 	</div>
 </div>
+
 <div class="table-responsive">
 	<table class="table table-striped">
 		<thead class="thead-dark">
@@ -53,9 +54,8 @@
 			</tr>
 		</tbody>
 	</table>
-	<ng-container *ngIf="isNullTerm">
-		<div class="alert alert-danger" role="alert">
-			Search return no data!
-		</div>
-	</ng-container>
+
+	<div *ngIf="isNullTerm" class="alert alert-danger" role="alert">
+		Search return no data!
+	</div>
 </div>
